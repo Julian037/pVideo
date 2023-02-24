@@ -5,26 +5,26 @@ const useInitialState = (API) => {
   const [ videos, setVideos ] = useState([]);
   console.log(videos)
 
-  // useEffect(() => {
-  //   fetch(API)
-  //     .then(response => response.json())
-  //     .then(data => setVideos(data));
-  // },
-  // []);
+  useEffect(() => {
+    fetch(API)
+      .then(response => response.json())
+      .then(data => setVideos(data));
+  },
+  []);
 
-  const fetchPokemon = async () => {
+//   const fetchPokemon = async () => {
   
-  const peticion = await axios.get(`https://dummyjson.com/products`)
-  // setPokemon(peticion.data.forms[0])
-  setVideos(peticion.data)
+//   const peticion = await axios.get(`https://dummyjson.com/products`)
+//   // setPokemon(peticion.data.forms[0])
+//   // setVideos(peticion.data)
 
 
-}
+// }
 
-useEffect(() => {
+// useEffect(() => {
 
-fetchPokemon()
-},[])
+// fetchPokemon()
+// },[])
   
   return videos;
 

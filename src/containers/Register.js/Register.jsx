@@ -1,27 +1,56 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react'
+import { connect } from 'react-redux';
+import { registerRequest } from '../../actions';
+
+import { Link, useNavigate } from 'react-router-dom';
 import './RegisterStyle.css';
 
-const Register = () => {
-  return (
+const Register = ({registerRequest}) => {
 
-    <>
-        <section className='register'>
-		<section className='register__container'>
-			<h2>Regístrate</h2>
-			<form className='register__container--form'>
-				<input className='input' type='text' placeholder='Nombre' />
-				<input className='input' type='text' placeholder='Correo' />
-				<input className='input' type='password' placeholder='Contraseña' />
-				<button className='button'>Registrarme</button>
-			</form>
-			<Link to='/login'>
-				Iniciar sesión
-			</Link>
+	const navigate = useNavigate()
+
+	const [registerValues, setRegisterValues] = useState({
+		email: '',
+		name: '',
+		password: '',
+	})
+
+	const handleInput = (event) => {
+		setRegisterValues({
+			...registerValues,
+			[event.target.name]: event.target.value
+		})
+	}
+
+	const handleSumit = (event) => {
+		event.preventDefault()
+		registerRequest(registerValues)
+		navigate('/')
+	}
+
+	return (
+
+		<>
+			<section className='register'>
+			<section className='register__container'>
+				<h2>Regístrate</h2>
+				<form className='register__container--form' onSubmit={handleSumit}>
+					<input name='name' className='input' type='text' placeholder='Nombre' onChange={handleInput}/>
+					<input name='email' className='input' type='text' placeholder='Correo' onChange={handleInput}/>
+					<input name='password' className='input' type='password' placeholder='Contraseña' onChange={handleInput}/>
+					<button className='button'>Registrarme</button>
+				</form>
+				<Link to='/login'>
+					Iniciar sesión
+				</Link>
+			</section>
 		</section>
-	</section>
-    </>
-  )
+		</>
+	)
 }
 
-export default Register
+const mapDispatchToProps = {
+	registerRequest,
+  };
+
+export default connect(null, mapDispatchToProps)(Register)
