@@ -1,21 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import Search from '../components/Search';
-import Categories from '../components/Categories';
-import Carousel from '../components/Carousel';
-import CarouselItem from '../components/CarouselItem';
-// import useInitialState from '../hooks/useInitialState';
-// import '../assets/styles/App.scss';
-
-// const API = 'http://localhost:3000/initalState'
-// const API = 'https://dummyjson.com/products'
+import Search from '../../components/Search/Search';
+import Categories from '../../components/Categories/Categories';
+import Carousel from '../../components/Carousel/Carousel';
+import CarouselItem from '../../components/CarouselItem/CarouselItem';
 
 const Home = ({myList, trends, originals}) => {
-  // const initialState = useInitialState(API);
-  
+
   return (
     <>
-
       <Search />
       {myList.length > 0 &&
         <Categories title="Mi Lista">
@@ -26,14 +19,11 @@ const Home = ({myList, trends, originals}) => {
           </Carousel>
         </Categories>
       }
-
-      
       <Categories title="Tendencias">
         <Carousel>
           {trends.map(item =>
             <CarouselItem key={item.id} {...item} />
           )}
-          
         </Carousel>
       </Categories>
       <Categories title="Originales de Platzi Video">
@@ -41,7 +31,6 @@ const Home = ({myList, trends, originals}) => {
           {originals.map(item =>
             <CarouselItem key={item.id} {...item} />
           )}
-                  
         </Carousel>
       </Categories>
     </>

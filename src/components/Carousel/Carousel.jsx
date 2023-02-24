@@ -1,5 +1,5 @@
 import React from 'react';
-import '../assets/styles/components/Carousel.css';
+import './CarouselStyles.css';
 
 const Carousel = ({ children }) => (
   <section className="carousel">

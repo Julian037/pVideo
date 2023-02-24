@@ -1,11 +1,11 @@
 import React from 'react';
 import {Link, useLocation } from 'react-router-dom'
 import { connect } from 'react-redux';
-import gravatar from '../utils/gravatar'
-import { logoutRequest } from '../actions';
-import '../assets/styles/components/Header.css';
-import logo from '../assets/static/logo-platzi-video-BW2.png';
-import userIcon from '../assets/static/user-icon.png';
+import gravatar from '../../utils/gravatar'
+import { logoutRequest } from '../../actions';
+import logo from '../../assets/static/logo-platzi-video-BW2.png';
+import userIcon from '../../assets/static/user-icon.png';
+import './HeaderStyles.css';
 
 const Header = ({user , logoutRequest}) => {
   
@@ -15,28 +15,27 @@ const Header = ({user , logoutRequest}) => {
     logoutRequest({})
   }
 
-  const test =  useLocation().pathname === '/login'
-  const test2 =  useLocation().pathname === '/register'
-  const headerClass = test ||  test2 ? 'header greenHeader' : 'header'
-
-  console.log('holi ', headerClass)
+  const isLogin =  useLocation().pathname === '/login'
+  const isRegister =  useLocation().pathname === '/register'
+  const headerClass = isLogin ||  isRegister ? 'header greenHeader' : 'header'
 
   return (
     <header className={headerClass}>
   
       <Link to='/'>
-        <img className="header__img" src={logo} alt="Platzi Video" />
+        <img 
+          className="header__img" 
+          src={logo} 
+          alt="Platzi Video" 
+        />
       </Link>
   
       <div className="header__menu">
         <div className="header__menu--profile">
-
           { hashUser ? <img src={gravatar(user.email)} alt="" />  : <img src={userIcon} alt="" />}
-
           <p>Perfil</p>
         </div>
         <ul>
-
           {hashUser ? <li><a href="/">{user.name}</a></li> : null }
           {hashUser ?  <li><a href="/" onClick={handleLogout}>Cerrar Sesión</a></li> :     
           <li>
@@ -45,8 +44,6 @@ const Header = ({user , logoutRequest}) => {
             </Link>
           </li>
           }
-          
-     
         </ul>
       </div>
     </header>

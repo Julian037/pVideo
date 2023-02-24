@@ -1,13 +1,11 @@
 import React from 'react'
-import {BrowserRouter, Route, Routes, HashRouter} from 'react-router-dom'
+import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import Layout from '../components/Layout/Layout'
-// import  {HashRouter, Routes, Route} from 'react-router-dom';
-import Home from '../containers/Home'
+import Home from '../containers/Home/Home'
 import Login from '../containers/Login/Login'
 import NotFound from '../containers/NotFound/NotFound'
 import Players from '../containers/Players/Players'
 import Register from '../containers/Register.js/Register'
-
 
 const App = () => (
     <BrowserRouter>
